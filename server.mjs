@@ -11,7 +11,10 @@ const apiKey = process.env.NY_TIMES_API_KEY; // NY Times API key
 // Enable CORS
 app.use(
   cors({
-    origin: "http://localhost:3001", // Replace with your frontend's URL if different
+    origin: [
+      "http://localhost:3001", // For local frontend development
+      "https://react-frontend-deploy-5yd6.onrender.com", // Deployed frontend URL
+    ],
   })
 );
 
@@ -41,4 +44,5 @@ app.get("/api/search", async (req, res) => {
 });
 
 // Start the Express server
-app.listen(3000, () => console.log("Server is running on port 3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
